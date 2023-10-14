@@ -8,18 +8,23 @@ public class player : MonoBehaviour
     private Rigidbody2D rb;
     public float horizontal;
     private bool flipRight = true;
+    public Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        horizontal = Input.GetAxis("Horizontal")*speed;
-        rb.velocity = new Vector2(horizontal,rb.velocity.y);//(x,y)
+        horizontal = Input.GetAxis("Horizontal");
+
+        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);//(x,y)
+        animator.SetFloat("moveX", Mathf.Abs ( horizontal ) );
+
         if (horizontal > 0 && !flipRight)
         {
             Flip();
