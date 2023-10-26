@@ -3087,6 +3087,11 @@ MonoBehaviour:
   horizontal: 0
   animator: {fileID: 1915607101}
   jumpForse: 10
+  onGround: 1
+  Ground:
+    serializedVersion: 2
+    m_Bits: 8
+  GroundCheck: {fileID: 1258656409}
 --- !u!50 &1915607100
 Rigidbody2D:
   serializedVersion: 4
@@ -3103,10 +3108,10 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 1eb2d1de595b65a4ebf5b8a44be1bc0a, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!95 &1915607101
 Animator:
