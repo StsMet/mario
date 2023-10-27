@@ -3086,7 +3086,7 @@ MonoBehaviour:
   speed: 8
   horizontal: 0
   animator: {fileID: 1915607101}
-  jumpForse: 10
+  jumpForse: 7
   onGround: 1
   Ground:
     serializedVersion: 2

@@ -9,11 +9,12 @@ public class player : MonoBehaviour
     public float horizontal;
     private bool flipRight = true;
     public Animator animator;
-    public int jumpForse = 5;
+    public int jumpForse = 10;
     public bool onGround;
     public LayerMask Ground;
     public Transform GroundCheck;
     private float GroundCheckRadius;
+     public float vertical;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,10 +27,20 @@ public class player : MonoBehaviour
     void Update()
     {
         horizontal = Input.GetAxis("Horizontal");
+        vertical = Input.GetAxis("Vertical");
 
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);//(x,y)
+        // rb.velocity = new Vector2(horizontal * speed, vertical);
         animator.SetFloat("moveX", Mathf.Abs(horizontal));
+        
 
+/*
+         if ((Horizontal > 0 && !flipRight) || (Horizontal < 0 && flipRight))
+        {
+            transform.localScale *= new Vector2(-1, 1);
+            flipRight = !flipRight;
+        }
+        */
         if (horizontal > 0 && !flipRight)
         {
             Flip();
@@ -62,7 +73,8 @@ public class player : MonoBehaviour
     void CheckingGround()
     {
         onGround = Physics2D.OverlapCircle(GroundCheck.position, GroundCheckRadius, Ground);
-        // анимация
+                animator.SetFloat("moveY", Mathf.Abs(rb.velocity.y));
+                 
     }
 
 
