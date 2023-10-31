@@ -9,18 +9,21 @@ public class player : MonoBehaviour
     public float horizontal;
     private bool flipRight = true;
     public Animator animator;
-    public int jumpForse = 10;
+    public int jumpForse = 6;
     public bool onGround;
     public LayerMask Ground;
     public Transform GroundCheck;
     private float GroundCheckRadius;
-     public float vertical;
+    public float vertical;
+    private Vector3 respawnPoint;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        GroundCheckRadius=GroundCheck.GetComponent<CircleCollider2D>().radius;
+        GroundCheckRadius = GroundCheck.GetComponent<CircleCollider2D>().radius;
+        respawnPoint = transform.position;
     }
 
     // Update is called once per frame
@@ -32,15 +35,15 @@ public class player : MonoBehaviour
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);//(x,y)
         // rb.velocity = new Vector2(horizontal * speed, vertical);
         animator.SetFloat("moveX", Mathf.Abs(horizontal));
-        
 
-/*
-         if ((Horizontal > 0 && !flipRight) || (Horizontal < 0 && flipRight))
-        {
-            transform.localScale *= new Vector2(-1, 1);
-            flipRight = !flipRight;
-        }
-        */
+
+        /*
+                 if ((Horizontal > 0 && !flipRight) || (Horizontal < 0 && flipRight))
+                {
+                    transform.localScale *= new Vector2(-1, 1);
+                    flipRight = !flipRight;
+                }
+                */
         if (horizontal > 0 && !flipRight)
         {
             Flip();
@@ -52,6 +55,7 @@ public class player : MonoBehaviour
         }
         Jump();
         CheckingGround();
+
     }
 
     void Flip()
@@ -66,16 +70,24 @@ public class player : MonoBehaviour
     {
         if (onGround && Input.GetKeyDown(KeyCode.Space))
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForse );
+            rb.velocity = new Vector2(rb.velocity.x, jumpForse);
         }
 
     }
     void CheckingGround()
     {
         onGround = Physics2D.OverlapCircle(GroundCheck.position, GroundCheckRadius, Ground);
-                animator.SetFloat("moveY", Mathf.Abs(rb.velocity.y));
-                 
-    }
+        animator.SetFloat("moveY", Mathf.Abs(rb.velocity.y));
 
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "DeadZone")
+        {
+            transform.position = respawnPoint;
+        }
+
+
+    }
 
 }
