@@ -86,6 +86,12 @@ public class player : MonoBehaviour
         {
             transform.position = respawnPoint;
         }
+        else if (collision.tag == "ChekPoint")
+        {
+            respawnPoint = transform.position;
+        }
+
+
 
 
     }
