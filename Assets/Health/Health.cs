@@ -22,9 +22,14 @@ public class Health : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject) ;
+            Destroy(gameObject);
 
         }
+    }
+
+    public void addHealth(float _value)
+    {
+        currentHealth = Mathf.Clamp(currentHealth + _value, 0, startingHealth);
     }
 
     void Update()
