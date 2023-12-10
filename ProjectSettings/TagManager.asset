@@ -6,6 +6,8 @@ TagManager:
   tags:
   - DeadZone
   - ChekPoint
+  - Enemy
+  - Bullet
   layers:
   - Default
   - TransparentFX
