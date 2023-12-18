@@ -97,5 +97,18 @@ public class player : MonoBehaviour
 
 
     }
-
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.name.Equals("Platform"))
+        {
+            this.transform.parent = collision.transform;
+        }
+    }
+      private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.name.Equals("Platform"))
+        {
+            this.transform.parent = null;
+        }
+    }
 }

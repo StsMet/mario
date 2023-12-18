@@ -12,7 +12,7 @@ public class enemy : MonoBehaviour
     private float leftEdge;
     private float rightEdge;
 
-    private int health;
+    public int health;
     private void Awake()
     {
         leftEdge = transform.position.x - moveDistance;
@@ -44,7 +44,7 @@ public class enemy : MonoBehaviour
                 movingLeft = true;
             }
         }
-        if (health = 0)
+        if (health == 0)
         {
             Destroy(gameObject);
         }
