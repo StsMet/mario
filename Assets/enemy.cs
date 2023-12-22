@@ -13,6 +13,7 @@ public class enemy : MonoBehaviour
     private float rightEdge;
 
     public int health;
+    public GameObject DroppedCoin;
     private void Awake()
     {
         leftEdge = transform.position.x - moveDistance;
@@ -47,6 +48,7 @@ public class enemy : MonoBehaviour
         if (health == 0)
         {
             Destroy(gameObject);
+            Instantiate(DroppedCoin, transform.position, transform.rotation);
         }
     }
 
