@@ -9,7 +9,8 @@ public class player : MonoBehaviour
     public float horizontal;
     private bool flipRight = true;
     public Animator animator;
-    public int jumpForse = 6;
+    public int jumpForse = 3;
+    public int BjumpForse = 7;
     public bool onGround;
     public LayerMask Ground;
     public Transform GroundCheck;
@@ -73,6 +74,10 @@ public class player : MonoBehaviour
         if (onGround && Input.GetKeyDown(KeyCode.Space))
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForse);
+        }
+        else if (onGround && Input.GetKey(KeyCode.Space))
+        {
+            rb.velocity = new Vector2(rb.velocity.x, BjumpForse);
         }
 
     }
