@@ -9,8 +9,8 @@ public class player : MonoBehaviour
     public float horizontal;
     private bool flipRight = true;
     public Animator animator;
-    public int jumpForse = 3;
-    public int BjumpForse = 7;
+    public int jumpForse = 1;
+    public int BjumpForse = 6;
     public bool onGround;
     public LayerMask Ground;
     public Transform GroundCheck;
